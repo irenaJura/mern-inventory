@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Products from './components/products';
+import ViewProduct from './components//view-product';
+import CreateProduct from './components/create-product';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="container">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <Link to="/" className="navbar-brand">MERN-Stack Todo App</Link>
+            <div className="collpase navbar-collapse">
+              <ul className="navbar-nav mr-auto">
+                <li className="navbar-item">
+                  <Link to="/" className="nav-link">Products</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/create" className="nav-link">Create Product</Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <br/>
+          <Route path="/" exact component={Products} />
+          <Route path="/view/:id" component={ViewProduct} />
+          <Route path="/create" component={CreateProduct} />
+        </div>
+      </Router>
     );
   }
 }
